@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #Memuat dataset
-day_df = pd.read_csv(r"pd.read_csv("day_data.csv") 
+day_df = pd.read_csv("day_data.csv") 
 
 #Mengonversi tanggal
 day_df["dteday"] = pd.to_datetime(day_df["dteday"])
