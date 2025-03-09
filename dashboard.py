@@ -46,7 +46,7 @@ st.markdown("""
 # ======================== SIDEBAR ========================
 with st.sidebar:
     st.title("Bike Sharings")
-    st.image("C:\\Users\\Nasywa Agiyan Nisa\\OneDrive\\Python Test\\minimalist bicycle logo on a white background.jpg")
+    st.image("minimalist bicycle logo on a white background.jpg")
     st.markdown("""
     <style>
         .main {background-color: #f5f5f5;}
