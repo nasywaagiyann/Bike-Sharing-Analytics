@@ -77,53 +77,55 @@ filtered_df = day_df[(day_df["dteday"] >= start_date) & (day_df["dteday"] <= end
 # ======================== DASHBOARD TITLE ========================
 st.markdown("<h1>Dashboard Bike Sharing</h1>", unsafe_allow_html=True)
 
-total_rentals = filtered_df["count_cr"].sum()
-avg_rentals = round(filtered_df["count_cr"].mean(), 2)
+if not filtered_df.empty:
+    total_rentals = filtered_df["count_cr"].sum()
+    avg_rentals = round(filtered_df["count_cr"].mean(), 2)
 
-colA, colB = st.columns(2)
+    colA, colB = st.columns(2)
 
-with colA:
-    st.markdown(f"""
-        <div class="metric-box">
-            <div class="metric-label">Total Penyewaan</div>
-            <div class="metric-value">{total_rentals:,} 🚲</div>
-        </div>
-    """, unsafe_allow_html=True)
-    
-with colB:
-    st.markdown(f"""
-        <div class="metric-box">
-            <div class="metric-label">Rata-rata Penyewaan Harian</div>
-            <div class="metric-value">{avg_rentals:,} 🚴‍♂️</div>
-        </div>
-    """, unsafe_allow_html=True)
+    with colA:
+        st.markdown(f"""
+            <div class="metric-box">
+                <div class="metric-label">Total Penyewaan</div>
+                <div class="metric-value">{total_rentals:,} 🚲</div>
+            </div>
+        """, unsafe_allow_html=True)
 
-# ======================== TREN PENYEWAAN SEPEDA ========================
-st.markdown("<h3>Tren Penyewaan Sepeda 2011-2012</h3>", unsafe_allow_html=True)
-fig1, ax1 = plt.subplots(figsize=(10, 5))
+    with colB:
+        st.markdown(f"""
+            <div class="metric-box">
+                <div class="metric-label">Rata-rata Penyewaan Harian</div>
+                <div class="metric-value">{avg_rentals:,} 🚴‍♂️</div>
+            </div>
+        """, unsafe_allow_html=True)
 
-sns.lineplot(
-    data=day_df,
-    x="dteday",
-    y="count_cr",
-    hue="year",
-    marker="o",
-    palette=["#ADD8E6", "#FFD580"],
-    ax=ax1  # Gunakan ax untuk pengaturan yang lebih baik
-)
+    # ======================== TREN PENYEWAAN SEPEDA ========================
+    st.markdown(f"<h3>Tren Penyewaan Sepeda ({start_date.date()} - {end_date.date()})</h3>", unsafe_allow_html=True)
 
-# Mengatur tampilan plot menggunakan ax1
-ax1.set_facecolor("white")
-fig1.set_facecolor("white")
+    fig1, ax1 = plt.subplots(figsize=(10, 5))
 
-ax1.set_xlabel("Tanggal")
-ax1.set_ylabel("Jumlah Penyewa Sepeda")
-ax1.legend(title="Tahun")  # Tidak perlu labels lagi
-ax1.tick_params(axis="x", rotation=45)
-ax1.grid(True)
+    sns.lineplot(
+        data=filtered_df,  
+        x="dteday",
+        y="count_cr",
+        hue="year",
+        marker="o",
+        palette=["#ADD8E6", "#FFD580"],
+        ax=ax1
+    )
 
-# Menampilkan plot di Streamlit
-st.pyplot(fig1)
+    ax1.set_facecolor("white")
+    fig1.set_facecolor("white")
+
+    ax1.set_xlabel("Tanggal")
+    ax1.set_ylabel("Jumlah Penyewa Sepeda")
+    ax1.legend(title="Tahun")
+    ax1.tick_params(axis="x", rotation=45)
+    ax1.grid(True)
+
+    st.pyplot(fig1)
+else:
+    st.warning("Tidak ada data dalam rentang waktu yang dipilih. Silakan pilih rentang waktu lain.")
 
 # ======================== BAGIAN BAWAH: 2 GRAFIK SEJAJAR ========================
 col1, col2 = st.columns(2)
