@@ -225,19 +225,19 @@ with col4:
 
 # ======================== HUBUNGAN KECEPATAN ANGIN  ========================
 with col5:
-    st.markdown("<h3 style='text-align:center;'>Pengaruh Kecepatan Angin</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center;'>Pengaruh Kecepatan Angin terhadap Penyewaan Sepeda</h3>", unsafe_allow_html=True)
+    
     fig6, ax6 = plt.subplots(figsize=(6, 6))  
-    sns.scatterplot(data=day_df, x="wind_speed", y="count_cr", alpha=0.6, color="#ADD8E6")
-
+    sns.scatterplot(data=day_df, x="wind_speed", y="count_cr", alpha=0.7, color="#ADD8E6")  # Warna lebih kontras
+    
     plt.xlabel("Kecepatan Angin (windspeed)")
     plt.ylabel("Jumlah Penyewaan Sepeda (cnt)")
-    plt.title("Pengaruh Kecepatan Angin terhadap Penyewaan Sepeda")
     
+    plt.grid(True, linestyle="--", alpha=0.5)  # Tambahkan grid untuk keterbacaan
     plt.gca().set_facecolor("white")
     plt.gcf().set_facecolor("white")
 
     st.pyplot(fig6)
-
 
 
 st.caption('Copyright Nasywa Agiyan Nisa 2025')
