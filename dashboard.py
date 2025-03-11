@@ -135,7 +135,6 @@ sns.lineplot(
 ax1.set_facecolor("white")
 fig1.set_facecolor("white")
 
-ax1.set_title("Tren Penyewaan Sepeda 2011-2012")
 ax1.set_xlabel("Tanggal")
 ax1.set_ylabel("Jumlah Penyewa Sepeda")
 ax1.legend(title="Tahun")  # Tidak perlu labels lagi
