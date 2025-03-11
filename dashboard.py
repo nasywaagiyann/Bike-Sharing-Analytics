@@ -224,8 +224,6 @@ with col4:
 
 
 # ======================== HUBUNGAN KECEPATAN ANGIN  ========================
-col5, col6 = st.columns(2)
-
 with col5:
     st.markdown("<h3 style='text-align:center;'>Pengaruh Kecepatan Angin</h3>", unsafe_allow_html=True)
     fig6, ax6 = plt.subplots(figsize=(6, 6))  
@@ -240,26 +238,6 @@ with col5:
 
     st.pyplot(fig6)
 
-# ======================== JUMLAH PENYEWAAN BERDASARKAN KATEGORI ========================
-with col6:
-    st.markdown("<h3 style='text-align:center;'>Kategori Penyewaan Sepeda</h3>", unsafe_allow_html=True)
 
-    if 'count_cr' in day_df.columns:
-        bins = [0, 1800, 3600, 5400, 7200, 9000]
-        labels = ["Sangat Rendah", "Rendah", "Sedang", "Tinggi", "Sangat Tinggi"]
-        day_df['rental_category'] = pd.cut(day_df['count_cr'], bins=bins, labels=labels, right=True)
-
-        light_palette = ["#ADD8E6", "#FFD580", "#90EE90", "#FF9999", "#D8BFD8"]
-
-        fig7, ax7 = plt.subplots(figsize=(4, 2.5))  
-        sns.countplot(data=day_df, x='rental_category', palette=light_palette, ax=ax7)
-
-        ax7.set_xlabel("Kategori", fontsize=8)
-        ax7.set_ylabel("Jumlah", fontsize=8)
-        ax7.set_title("")
-        ax7.tick_params(axis='x', labelsize=7)
-        ax7.tick_params(axis='y', labelsize=7)
-
-        st.pyplot(fig7)
 
 st.caption('Copyright Nasywa Agiyan Nisa 2025')
