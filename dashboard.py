@@ -211,7 +211,7 @@ with col3:
     st.pyplot(fig4)
 
 with col4:
-    st.markdown("<h3>Hubungan Suhuuu terhadap Penyewaan Sepeda</h3>", unsafe_allow_html=True)
+    st.markdown("<h3>Hubungan Suhu terhadap Penyewaan Sepeda</h3>", unsafe_allow_html=True)
     fig5, ax5 = plt.subplots(figsize=(6, 6))
     sns.scatterplot(data=day_df, x="temp", y="count_cr", alpha=0.6, color="lightblue")
     
@@ -229,13 +229,14 @@ col5, col6 = st.columns(2)
 with col5:
     st.markdown("<h3 style='text-align:center;'>Pengaruh Kecepatan Angin</h3>", unsafe_allow_html=True)
     fig6, ax6 = plt.subplots(figsize=(3, 2))  
-    sns.scatterplot(data=day_df, x="wind_speed", y="count_cr", alpha=0.6, color="#ADD8E6", ax=ax6)
+    sns.scatterplot(data=day_df, x="wind_speed", y="count_cr", alpha=0.6, color="#ADD8E6")
 
-    ax6.set_xlabel("Kecepatan Angin", fontsize=8)
-    ax6.set_ylabel("Jumlah Penyewa", fontsize=8)
-    ax6.set_title("")
-    ax6.tick_params(axis='x', labelsize=7)
-    ax6.tick_params(axis='y', labelsize=7)
+    plt.xlabel("Kecepatan Angin (windspeed)")
+    plt.ylabel("Jumlah Penyewaan Sepeda (cnt)")
+    plt.title("Pengaruh Kecepatan Angin terhadap Penyewaan Sepeda")
+    
+    plt.gca().set_facecolor("white")
+    plt.gcf().set_facecolor("white")
 
     st.pyplot(fig6)
 
