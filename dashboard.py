@@ -118,7 +118,7 @@ with colB:
     """, unsafe_allow_html=True)
 
 # ======================== TREN PENYEWAAN SEPEDA ========================
-st.markdown("<h3>Tren Penyewaan Sepeda</h3>", unsafe_allow_html=True)
+st.markdown("<h3>Tren Penyewaan Sepeda 2011-2012</h3>", unsafe_allow_html=True)
 fig1, ax1 = plt.subplots(figsize=(10, 5))
 
 sns.lineplot(
@@ -150,19 +150,22 @@ col1, col2 = st.columns(2)
 # ---- GRAFIK 1: TOTAL PENYEWAAN BERDASARKAN MUSIM (KIRI) ----
 with col1:
     st.markdown("<h3>Total Penyewaan Berdasarkan Musim</h3>", unsafe_allow_html=True)
+    
     season_rentals = day_df.groupby("season")["count_cr"].sum().reset_index()
 
-    fig2, ax2 = plt.subplots(figsize=(6, 5))
-    sns.barplot(data=season_rentals, x="season", y="count_cr", 
-                palette = ["#ADD8E6", "#FFD580", "#90EE90", "#FF9999", "#D8BFD8"], ax=ax2)
+    colors = ["#ADD8E6", "#FFD580", "#90EE90", "#FF9999"] 
 
-    ax2.set_xlabel("Musim", fontsize=10)
-    ax2.set_ylabel("Total Penyewaan Sepeda", fontsize=10)
-    ax2.set_title("", fontsize=12, fontweight="bold")
-    ax2.grid(axis="y", linestyle="", alpha=0.5)
+    fig2, ax2 = plt.subplots(figsize=(6, 5))
+    sns.barplot(data=season_rentals, x="season", y="count_cr", palette=colors, ax=ax2)
+
+    ax2.set_xlabel("Musim")
+    ax2.set_ylabel("Total Penyewaan Sepeda")
+    ax2.set_title("Total Penyewaan Sepeda Berdasarkan Musim")
+    ax2.grid(axis="y", linestyle="--", alpha=0.7)  # Menggunakan grid yang valid
+    ax2.set_facecolor("white")  # Set warna background untuk axes
+    fig2.set_facecolor("white")  # Set warna background untuk figure
 
     st.pyplot(fig2)
-
 
 # ---- GRAFIK 2: POLA PENYEWAAN BERDASARKAN CASUAL & REGISTERED (KANAN) ----
 with col2:
