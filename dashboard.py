@@ -3,10 +3,10 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-#Memuat dataset
+# Memuat dataset
 day_df = pd.read_csv("day_data.csv")
 
-#Mengonversi tanggal
+# Mengonversi tanggal
 day_df["dteday"] = pd.to_datetime(day_df["dteday"])
 day_df.sort_values(by="dteday", inplace=True)
 
@@ -50,45 +50,26 @@ with st.sidebar:
 
     st.markdown("""
     <style>
-        .main {background-color: #f5f5f5;}
-        h1 {text-align: center; font-size: 40px; font-weight: bold; color: #333;}
-        h3 {text-align: center; font-size: 20px; font-weight: bold; color: #444;}
         .stSidebar {
-            background-color: #cce7ff !important;  /* Warna biru muda */
+            background-color: #cce7ff !important;
             padding: 10px;
             border-radius: 10px;
         }
-        .metric-box {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .metric-label {
-            font-size: 16px;
-            font-weight: bold;
-            color: #555;
-        }
-        .metric-value {
-            font-size: 28px;
-            font-weight: bold;
-            color: #222;
-            margin-top: 5px;
-        }
     </style>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-    start_date, end_date = st.date_input(
+    date_selection = st.date_input(
         label='Rentang Waktu',
         min_value=min_date,
         max_value=max_date,
         value=[min_date, max_date]
     )
+
+    # Pastikan date_selection berupa tuple dua nilai
+    if isinstance(date_selection, tuple) and len(date_selection) == 2:
+        start_date, end_date = date_selection
+    else:
+        start_date, end_date = min_date, max_date  # Default jika user hanya pilih satu tanggal
 
 start_date, end_date = pd.to_datetime(start_date), pd.to_datetime(end_date)
 filtered_df = day_df[(day_df["dteday"] >= start_date) & (day_df["dteday"] <= end_date)]
