@@ -211,7 +211,7 @@ with col3:
     st.pyplot(fig4)
 
 with col4:
-    st.markdown("<h3>Hubungan Suhu terhadap Penyewaan Sepeda</h3>", unsafe_allow_html=True)
+    st.markdown("<h3>Hubungan Suhuuu terhadap Penyewaan Sepeda</h3>", unsafe_allow_html=True)
     fig5, ax5 = plt.subplots(figsize=(6, 6))
     sns.scatterplot(data=day_df, x="temp", y="count_cr", alpha=0.6, color="lightblue")
     
