@@ -232,9 +232,8 @@ with col:
     
     plt.xlabel("Kecepatan Angin (windspeed)")
     plt.ylabel("Jumlah Penyewaan Sepeda (cnt)")
-    plt.title("Pengaruh Kecepatan Angin terhadap Penyewaan Sepeda")
     
-    plt.grid(True, linestyle="--", alpha=0.5)  
+    plt.grid(True, linestyle="", alpha=0.5)  
     plt.gca().set_facecolor("white")
     plt.gcf().set_facecolor("white")
 
