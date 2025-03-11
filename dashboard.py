@@ -228,7 +228,7 @@ col5, col6 = st.columns(2)
 
 with col5:
     st.markdown("<h3 style='text-align:center;'>Pengaruh Kecepatan Angin</h3>", unsafe_allow_html=True)
-    fig6, ax6 = plt.subplots(figsize=(3, 2))  
+    fig6, ax6 = plt.subplots(figsize=(6, 6))  
     sns.scatterplot(data=day_df, x="wind_speed", y="count_cr", alpha=0.6, color="#ADD8E6")
 
     plt.xlabel("Kecepatan Angin (windspeed)")
