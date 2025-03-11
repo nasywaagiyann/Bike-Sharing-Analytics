@@ -159,11 +159,10 @@ with col1:
     sns.barplot(data=season_rentals, x="season", y="count_cr", palette=colors, ax=ax2)
 
     ax2.set_xlabel("Musim")
-    ax2.set_ylabel("Total Penyewaan Sepeda")
-    ax2.set_title("Total Penyewaan Sepeda Berdasarkan Musim")
-    ax2.grid(axis="y", linestyle="--", alpha=0.7)  # Menggunakan grid yang valid
-    ax2.set_facecolor("white")  # Set warna background untuk axes
-    fig2.set_facecolor("white")  # Set warna background untuk figure
+    ax2.set_ylabel("Total Penyewaan Sepeda Berdasarkan Musim")
+    ax2.grid(axis="y", linestyle="--", alpha=0.7)  
+    ax2.set_facecolor("white") 
+    fig2.set_facecolor("white") 
 
     st.pyplot(fig2)
 
@@ -179,19 +178,21 @@ with col2:
 
     fig3, ax3 = plt.subplots(figsize=(6, 5))
 
-    ax3.bar(weekly_rentals["one_of_week"], weekly_rentals["casual"], 
-        color="#ADD8E6", label="Casual") 
-
-    ax3.bar(weekly_rentals["one_of_week"], weekly_rentals["registered"], 
-        bottom=weekly_rentals["casual"], color="#FFD580", label="Registered") 
-
-
-    ax3.set_xlabel("Hari dalam Seminggu", fontsize=10)
-    ax3.set_ylabel("Jumlah Penyewaan Sepeda", fontsize=10)
-    ax3.set_title("", fontsize=12, fontweight="bold")
-    ax3.legend()
-    ax3.tick_params(axis='x', rotation=45)
-    ax3.grid(axis="y", linestyle="", alpha=0.7)
+    #Plot casual di bawah
+    plt.bar(weekly_rentals["one_of_week"], weekly_rentals["casual"], color="#ADD8E6", label="Casual")
+    
+    #Plot registered di atas casual
+    plt.bar(weekly_rentals["one_of_week"], weekly_rentals["registered"],
+            bottom=weekly_rentals["casual"], color="#FFD580", label="Registered")
+    
+    plt.xlabel("Hari dalam Seminggu")
+    plt.ylabel("Jumlah Penyewaan Sepeda")
+    plt.title("Pola Penyewaan Sepeda Berdasarkan Casual dan Registered per Hari")
+    plt.legend()
+    plt.xticks(rotation=45)
+    plt.grid(axis="y", linestyle="", alpha=0.7)
+    plt.gca().set_facecolor("white")
+    plt.gcf().set_facecolor("white")
 
     st.pyplot(fig3)
 
@@ -212,10 +213,13 @@ with col3:
 with col4:
     st.markdown("<h3>Hubungan Suhu terhadap Penyewaan Sepeda</h3>", unsafe_allow_html=True)
     fig5, ax5 = plt.subplots(figsize=(6, 6))
-    sns.scatterplot(data=day_df, x="temp", y="count_cr", alpha=0.6, ax=ax5, color="#ADD8E6")
-    ax5.set_xlabel("Suhu")
-    ax5.set_ylabel("Jumlah Penyewaan Sepeda")
-    ax5.set_title("")
+    sns.scatterplot(data=day_df, x="temp", y="count_cr", alpha=0.6, color="lightblue")
+    
+    plt.xlabel("Suhu")
+    plt.ylabel("Total Penyewaan Sepeda")
+    plt.grid(True, linestyle="", alpha=0.5)
+    plt.gca().set_facecolor("white")
+    plt.gcf().set_facecolor("white")
     st.pyplot(fig5)
 
 
