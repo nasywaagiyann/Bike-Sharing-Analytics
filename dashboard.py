@@ -45,7 +45,7 @@ st.markdown("""
 
 # ======================== SIDEBAR ========================
 with st.sidebar:
-    st.title("Bike Sharings")
+    st.title("Bike Sharing")
     st.image("minimalist bicycle logo on a white background.jpg")
 
     st.markdown("""
@@ -143,7 +143,7 @@ with col1:
 
     ax2.set_xlabel("Musim")
     ax2.set_ylabel("Total Penyewaan Sepeda Berdasarkan Musim")
-    ax2.grid(axis="y", linestyle="--", alpha=0.7)  
+    ax2.grid(axis="y", linestyle="", alpha=0.7)  
     ax2.set_facecolor("white") 
     fig2.set_facecolor("white") 
 
