@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #Memuat dataset
-day_df = pd.read_csv("day_data.csv") 
+day_df = pd.read_csv("day_data.csv")
 
 #Mengonversi tanggal
 day_df["dteday"] = pd.to_datetime(day_df["dteday"])
@@ -47,6 +47,7 @@ st.markdown("""
 with st.sidebar:
     st.title("Bike Sharings")
     st.image("minimalist bicycle logo on a white background.jpg")
+
     st.markdown("""
     <style>
         .main {background-color: #f5f5f5;}
@@ -119,14 +120,29 @@ with colB:
 # ======================== TREN PENYEWAAN SEPEDA ========================
 st.markdown("<h3>Tren Penyewaan Sepeda</h3>", unsafe_allow_html=True)
 fig1, ax1 = plt.subplots(figsize=(10, 5))
-sns.lineplot(data=filtered_df, x="dteday", y="count_cr", hue="year", marker="o", palette=["lightskyblue", "lightsalmon"], ax=ax1)
 
-ax1.set_title("", fontsize=12, fontweight="bold")
-ax1.set_xlabel("Tanggal", fontsize=10)
-ax1.set_ylabel("Jumlah Penyewa Sepeda", fontsize=10)
-ax1.tick_params(axis='x', rotation=45)
-ax1.grid(True, alpha=0.5)
+sns.lineplot(
+    data=day_df,
+    x="dteday",
+    y="count_cr",
+    hue="year",
+    marker="o",
+    palette=["#ADD8E6", "#FFD580"],
+    ax=ax1  # Gunakan ax untuk pengaturan yang lebih baik
+)
 
+# Mengatur tampilan plot menggunakan ax1
+ax1.set_facecolor("white")
+fig1.set_facecolor("white")
+
+ax1.set_title("Tren Penyewaan Sepeda 2011-2012")
+ax1.set_xlabel("Tanggal")
+ax1.set_ylabel("Jumlah Penyewa Sepeda")
+ax1.legend(title="Tahun")  # Tidak perlu labels lagi
+ax1.tick_params(axis="x", rotation=45)
+ax1.grid(True)
+
+# Menampilkan plot di Streamlit
 st.pyplot(fig1)
 
 # ======================== BAGIAN BAWAH: 2 GRAFIK SEJAJAR ========================
